@@ -1,3 +1,3 @@
-const apiUrl: string = 'http://localhost:1337';
+const apiUrl: string = 'https://sr-serv.aerio.dev';
 
 export default apiUrl;
