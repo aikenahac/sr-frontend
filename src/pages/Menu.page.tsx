@@ -4,12 +4,13 @@ import { GET_MENU } from '../gql';
 import { useQuery } from '@apollo/client';
 import Loader from 'react-spinners/RingLoader';
 import apiUrl from '../conf';
-import React from 'react';
+import { createElement } from 'react';
+import { store } from 'react-notifications-component';
 
 export default function Menu(props: any) {
   const { loading, error, data } = useQuery(GET_MENU);
 
-  let orderItems: number[] = [];
+  let orderItems: Food[] = [];
 
   if (loading)
     return (
@@ -34,8 +35,20 @@ export default function Menu(props: any) {
     });
   }
 
-  function addToOrder(id: number) {
-    orderItems.push(id);
+  function addToOrder(food: Food) {
+    orderItems.push(food);
+    store.addNotification({
+      title: `Added ${food.Name} to order`,
+      message: `Price: ${food.Price} €`,
+      type: "success",
+      insert: "top",
+      container: "top-right",
+      animationIn: ["animate__animated", "animate__fadeIn"],
+      animationOut: ["animate__animated", "animate__fadeOut"],
+      dismiss: {
+        duration: 5000
+      }
+    });
     console.log(orderItems);
   }
 
@@ -58,12 +71,12 @@ export default function Menu(props: any) {
                   src: `${apiUrl}${food.Image.url}`,
                 }}
                 subTitle={`${food.Price} €`}
-                actions={React.createElement(
+                actions={createElement(
                   Button,
                   {
                     iconRight: <Shopping />,
                     type: 'white',
-                    onClick: () => addToOrder(food.id),
+                    onClick: () => addToOrder(food),
                   },
                   'Add to Order',
                 )}

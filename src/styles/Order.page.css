@@ -1,0 +1,10 @@
+.sr-order-item {
+  font-size: 12pt;
+  color: white;
+}
+
+.sr-order-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
