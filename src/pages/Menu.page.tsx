@@ -40,14 +40,14 @@ export default function Menu(props: any) {
     store.addNotification({
       title: `Added ${food.Name} to order`,
       message: `Price: ${food.Price} €`,
-      type: "success",
-      insert: "top",
-      container: "top-right",
-      animationIn: ["animate__animated", "animate__fadeIn"],
-      animationOut: ["animate__animated", "animate__fadeOut"],
+      type: 'success',
+      insert: 'top',
+      container: 'top-right',
+      animationIn: ['animate__animated', 'animate__fadeIn'],
+      animationOut: ['animate__animated', 'animate__fadeOut'],
       dismiss: {
-        duration: 5000
-      }
+        duration: 5000,
+      },
     });
     console.log(orderItems);
   }
